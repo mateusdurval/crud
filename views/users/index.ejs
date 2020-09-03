@@ -52,7 +52,6 @@
           <table class="table table-striped">
             <thead>
               <tr>
-                <th>#</th>
                 <th>Nome:</th>
                 <th>Idade:</th>
                 <th>Telefone:</th>
@@ -63,36 +62,18 @@
               </tr>
             </thead>
             <tbody>
+              <% data.forEach(function(user) { %>
               <tr>
-                <td>1</td>
-                <td>Mateus</td>
-                <td>20</td>
-                <td>(71) 99137-6458</td>
-                <td>20.158.119-56</td>
-                <td>863.245.468-05</td>
-                <th><a href="/users/edit"><i class="far fa-edit" style="color: darkcyan"></i></a></th>
+                <td><%= user.name %></td>
+                <td><%= user.age %></td>
+                <td><%= user.phone %></td>
+                <td><%= user.rg %></td>
+                <td><%= user.cpf %></td>
+                <th><a href="/users/edit/<%= user._id %>"><i class="far fa-edit" style="color: darkcyan"></i></a></th>
                 <th><a href=""><i class="far fa-trash-alt"></i></a></th>
               </tr>
+              <% }) %>
               <tr>
-                <td>1</td>
-                <td>Mateus</td>
-                <td>20</td>
-                <td>(71) 99137-6458</td>
-                <td>20.158.119-56</td>
-                <td>863.245.468-05</td>
-                <th><a href=""><i class="far fa-edit" style="color: darkcyan"></i></a></th>
-                <th><a href=""><i class="far fa-trash-alt" ></i></a></th>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>Mateus</td>
-                <td>20</td>
-                <td>(71) 99137-6458</td>
-                <td>20.158.119-56</td>
-                <td>863.245.468-05</td>
-                <th><a href=""><i class="far fa-edit" style="color: darkcyan"></i></a></th>
-                <th><a href=""><i class="far fa-trash-alt" ></i></a></th>
-              </tr>
             </tbody>
           </table>          
         </div>
