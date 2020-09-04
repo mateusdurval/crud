@@ -18,9 +18,9 @@ MongoClient.connect(uri, {useUnifiedTopology: true}, (err, client) => {
 
 app.set('view engine', 'ejs')
 
-//***************** CRUD USERS ******************** */
+// CRUD users  */
 
-//list all users from table users
+//** lists all users in the user table */
 app.get('/', (req, res) => {
     db.collection('users').find().toArray((err, results) => {
         if (err) return console.log(err)
@@ -28,27 +28,27 @@ app.get('/', (req, res) => {
         res.render('users/index.ejs', {data: results})
     })
 })
-//return view form create
+//** returns form view for insertion */
 app.get('/users/create', (req, res) => {
     res.render('users/create')
 })
-//action create
+//** insert in db */
 app.post('/users/insert', (req, res) =>  {
     db.collection('users').save(req.body, (err, result) => {
         if (err) return console.log(err)
 
-        console.log ('salvo no banco de dados')
+        console.log ('Inserted in the database!')
         res.redirect('/')
     })
     console.log(req.body)
 })
-//return view for update
+//** returns form view for editing */
 app.route('/users/edit/:id').get((req, res) => {
     var id = req.params.id
 
-    db.collection('users').find(ObjectId(id)).toArray((err, result) => {
+    db.collection('users').find(Object(id)).toArray((err, result) => {
         if (err) return res.send(err)
-
-        res.render('/users/edit', {data: result})
+        console.log(result.name)
+        res.render('/users/edit', {user: result})
     })
 })
