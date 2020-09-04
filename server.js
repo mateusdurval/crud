@@ -1,6 +1,8 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
+const path = require('path')
+const { ObjectId } = require('mongodb')
 
 app.use(bodyParser.urlencoded({ extended: true }))
 
@@ -15,7 +17,7 @@ MongoClient.connect(uri, {useUnifiedTopology: true}, (err, client) => {
     console.log('server is running on port 3000')
   })
 })
-
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs')
 
 //***************** CRUD USERS ******************** */
@@ -23,6 +25,8 @@ app.set('view engine', 'ejs')
 //list all users from table users
 app.get('/', (req, res) => {
     db.collection('users').find().toArray((err, results) => {
+        //var count = db.collection('users').count()
+        //console.log(count)
         if (err) return console.log(err)
 
         res.render('users/index.ejs', {data: results})
@@ -45,10 +49,35 @@ app.post('/users/insert', (req, res) =>  {
 //return view for update
 app.route('/users/edit/:id').get((req, res) => {
     var id = req.params.id
+    db.collection('users').find({"_id": ObjectId(id)}).toArray((err, result) => {
+        if (err) return console.log(err) 
 
-    db.collection('users').find(ObjectId(id)).toArray((err, result) => {
+        res.render('users/edit.ejs', {user: result})
+    })
+})
+
+app.route('/users/update').post((req, res) => {
+    console.log(req.params.phone)
+    var id = req.params.id
+    var name = req.params.name
+    var age = req.params.age
+    var phone = req.paramas.phone
+    var cpf = req.paramas.cpf
+    var rg = req.paramas.rg
+    var address = req.paramas.address
+
+    db.collection('users').updateOne({_id: ObjectId(id)}, {
+        $set: {
+            name: req.params.name,
+            age: req.params.age,
+            phone: req.params.phone,
+            cpf: req.params.cpf,
+            rg: req.params.rg,
+            address: req.params.address
+        }
+    }, (err, result) => {
         if (err) return res.send(err)
-
-        res.render('/users/edit', {data: result})
+        res.redirect('/')
+        console.log('Atualizado com sucesso!')
     })
 })
