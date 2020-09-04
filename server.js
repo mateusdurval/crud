@@ -1,6 +1,8 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
+const path = require('path')
+const { ObjectId } = require('mongodb')
 
 app.use(bodyParser.urlencoded({ extended: true }))
 
@@ -15,7 +17,7 @@ MongoClient.connect(uri, {useUnifiedTopology: true}, (err, client) => {
     console.log('server is running on port 3000')
   })
 })
-
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs')
 
 // CRUD users  */
@@ -23,6 +25,8 @@ app.set('view engine', 'ejs')
 //** lists all users in the user table */
 app.get('/', (req, res) => {
     db.collection('users').find().toArray((err, results) => {
+        //var count = db.collection('users').count()
+        //console.log(count)
         if (err) return console.log(err)
 
         res.render('users/index.ejs', {data: results})
@@ -45,10 +49,42 @@ app.post('/users/insert', (req, res) =>  {
 //** returns form view for editing */
 app.route('/users/edit/:id').get((req, res) => {
     var id = req.params.id
+    db.collection('users').find({"_id": ObjectId(id)}).toArray((err, result) => {
+        if (err) return console.log(err) 
 
+<<<<<<< HEAD
     db.collection('users').find(Object(id)).toArray((err, result) => {
         if (err) return res.send(err)
         console.log(result.name)
         res.render('/users/edit', {user: result})
+=======
+        res.render('users/edit.ejs', {user: result})
+    })
+})
+
+app.route('/users/update').post((req, res) => {
+    console.log(req.params.phone)
+    var id = req.params.id
+    var name = req.params.name
+    var age = req.params.age
+    var phone = req.paramas.phone
+    var cpf = req.paramas.cpf
+    var rg = req.paramas.rg
+    var address = req.paramas.address
+
+    db.collection('users').updateOne({_id: ObjectId(id)}, {
+        $set: {
+            name: name,
+            age: age,
+            phone: phone,
+            cpf: cpf,
+            rg: rg,
+            address: address
+        }
+    }, (err, result) => {
+        if (err) return res.send(err)
+        res.redirect('/')
+        console.log('Atualizado com sucesso!')
+>>>>>>> 6b7caa56a84e7eb20401d7f7efaea28a18e49d5d
     })
 })

@@ -20,44 +20,49 @@
             <div class="col-md-12" style="margin-top: 1%">
                 <h3 class="light">Editar usuário</h3>
 
-                <form action="/users/insert" method="POST">
-                    <div class="form-row" style="margin-top: 2%">
-                        <div class="col-4">
-                            <label for="name">Nome:</label>
-                            <input type="text" name="name" value="<%= data.user.name %>" class="form-control form-control-sm">
-                        </div>
-                        <div class="col-3">
-                            <label for="age">Nascimento:</label>
-                            <input type="date" name="age" class="form-control form-control-sm">
-                        </div>
-                        <div class="col-3">
-                            <label for="phone">Telefone celular</label>
-                            <input type="text" name="phone" class="form-control form-control-sm">
-                        </div>
-                    </div>
+                <% user.forEach(function(user) { %>
 
-                    <div class="form-row" style="margin-top: 1%">
-                        <div class="col-3">
-                            <label for="cpf">CPF:</label>
-                            <input type="number" name="cpf" class="form-control form-control-sm">
+                    <form action="/users/update" method="POST">
+                        <div class="form-row" style="margin-top: 2%">
+                            <div class="col-4">
+                                <label for="name">Nome:</label>
+                                <input type="text" name="name" value="<%= user.name %>" class="form-control form-control-sm">
+                            </div>
+                            <div class="col-3">
+                                <label for="age">Nascimento:</label>
+                                <input type="date" name="age" value="<%= user.age %>" class="form-control form-control-sm">
+                            </div>
+                            <div class="col-3">
+                                <label for="phone">Telefone celular</label>
+                                <input type="text" name="phone" value="<%= user.phone %>" class="form-control form-control-sm">
+                            </div>
                         </div>
-                        <div class="col-2">
-                            <label for="rg">RG:</label>
-                            <input type="number" name="rg" class="form-control form-control-sm">
-                        </div>
-                        <div class="col-5">
-                            <label for="address">Endereço:</label>
-                            <input type="text" name="adress" class="form-control form-control-sm">
-                        </div>
-                    </div>
 
-                    <div class="form-row" style="margin-top: 1%">
-                        <div class="col-md-12">
-                            <a href="/" class="btn btn-sm btn-dark">Cancelar</a>
-                            <button type="submit" class="btn btn-sm btn-success">Editar</button>
+                        <div class="form-row" style="margin-top: 1%">
+                            <div class="col-3">
+                                <label for="cpf">CPF:</label>
+                                <input type="number" name="cpf" value="<%= user.cpf %>" class="form-control form-control-sm">
+                            </div>
+                            <div class="col-2">
+                                <label for="rg">RG:</label>
+                                <input type="number" name="rg" value="<%= user.rg %>" class="form-control form-control-sm">
+                            </div>
+                            <div class="col-5">
+                                <label for="address">Endereço:</label>
+                                <input type="text" name="address" value="<%= user.address %>" class="form-control form-control-sm">
+                            </div>
                         </div>
-                    </div>
-                </form>
+
+                        <div class="form-row" style="margin-top: 1%">
+                            <div class="col-md-12">
+                                <a href="/" class="btn btn-sm btn-dark">Cancelar</a>
+                                <button type="submit" class="btn btn-sm btn-success">Editar</button>
+                            </div>
+                        </div>
+                    </form>
+
+                <% }) %>
+
             </div>
         </div>
     </div>
