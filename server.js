@@ -20,7 +20,7 @@ MongoClient.connect(uri, {useUnifiedTopology: true}, (err, client) => {
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs')
 
-// CRUD users  */
+////////////////////  CRUD users  //////*/
 
 //** lists all users in the user table */
 app.get('/', (req, res) => {
@@ -32,7 +32,6 @@ app.get('/', (req, res) => {
 //** get total users from db */
 app.get('/users/total', (req, res) => {
     db.collection('users').find().count((err, result) => {
-        console.log(result)
         res.status(200).send((result).toString())
     })
 })
