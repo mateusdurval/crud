@@ -25,18 +25,23 @@ app.set('view engine', 'ejs')
 //** lists all users in the user table */
 app.get('/', (req, res) => {
     db.collection('users').find().toArray((err, results) => {
-        //var count = db.collection('users').count()
-        //console.log(count)
         if (err) return console.log(err)
-
         res.render('users/index.ejs', {data: results, title: 'CRUD - Usuários'})
+    })    
+})
+//** get total users from db */
+app.get('/users/total', (req, res) => {
+    db.collection('users').find().count((err, result) => {
+        console.log(result)
+        res.status(200).send((result).toString())
     })
 })
+
 //** returns form view for insertion */
 app.get('/users/create', (req, res) => {
     res.render('users/create', {title: 'Cadastrar usuário'})
 })
-//** insert in db */
+//** insert user in the database */
 app.post('/users/insert', (req, res) =>  {
     db.collection('users').save(req.body, (err, result) => {
         if (err) return console.log(err)
@@ -55,7 +60,7 @@ app.route('/users/edit/:id').get((req, res) => {
         res.render('users/edit.ejs', {user: result, title: 'Editar usuário'})
     })
 })
-
+//** edit user in database */
 app.route('/users/update').post((req, res) => {
     console.log('ID:', req.body.id)
 

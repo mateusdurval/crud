@@ -24,7 +24,9 @@
 
                     <form action="/users/update" method="POST">
                         <div class="form-row" style="margin-top: 2%">
+
                             <input type="hidden" name="id" value="<%= user._id %>">
+                            
                             <div class="col-4">
                                 <label for="name">Nome:</label>
                                 <input type="text" name="name" value="<%= user.name %>" class="form-control form-control-sm">
