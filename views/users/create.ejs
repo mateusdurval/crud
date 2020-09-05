@@ -7,11 +7,24 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
+    
     <title><%= title %></title>
-
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- jQuery Mask Plugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+    <script>
+        $(document).ready(function ($) {
+            $('.phone').mask('(00) 00000-0000');
+        })
+        $(document).ready(function ($) {
+            $('.cpf').mask('000.000.000-00');
+        })
+        $(document).ready(function ($) {
+            $('.rg').mask('00.000.000-00');
+        })
+    </script>
+    
   </head>
   <body>
     </script>
@@ -24,30 +37,30 @@
                     <div class="form-row" style="margin-top: 2%">
                         <div class="col-4">
                             <label for="name">Nome:</label>
-                            <input type="text" name="name" class="form-control form-control-sm" placeholder="Mateus Durval Ferreira">
+                            <input type="text" name="name" class="form-control form-control-sm" placeholder="Mateus Durval Ferreira" required="">
                         </div>
                         <div class="col-3">
                             <label for="age">Nascimento:</label>
-                            <input type="date" name="age" class="form-control form-control-sm" placeholder="Nascimento">
+                            <input type="date" name="age" class="form-control form-control-sm" placeholder="Nascimento" required="">
                         </div>
                         <div class="col-3">
                             <label for="phone">Telefone celular</label>
-                            <input type="text" name="phone" class="form-control form-control-sm" placeholder="(71) 99999-9999">
+                            <input type="text" name="phone" class="form-control form-control-sm phone" placeholder="(71) 99999-9999" required="">
                         </div>
                     </div>
 
                     <div class="form-row" style="margin-top: 1%">
                         <div class="col-3">
                             <label for="cpf">CPF:</label>
-                            <input type="text" name="cpf" class="form-control form-control-sm" placeholder="000.000.000-00">
+                            <input type="text" name="cpf" class="form-control form-control-sm cpf" placeholder="000.000.000-00" required="">
                         </div>
                         <div class="col-2">
                             <label for="rg">RG:</label>
-                            <input type="text" name="rg" class="form-control form-control-sm" placeholder="00.000.000-00">
+                            <input type="text" name="rg" class="form-control form-control-sm rg" placeholder="00.000.000-00" required="">
                         </div>
                         <div class="col-5">
                             <label for="address">Endereço:</label>
-                            <input type="text" name="address" class="form-control form-control-sm" placeholder="Rua XXX, Número 107  ">
+                            <input type="text" name="address" class="form-control form-control-sm" placeholder="Rua XXX, Número 107" required="">
                         </div>
                     </div>
 
@@ -61,6 +74,10 @@
             </div>
         </div>
     </div>
+
+    
+
+
 
     
     <!-- Optional JavaScript -->
