@@ -8,19 +8,18 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
-    <!-- Style.css -->
-    <link rel="stylesheet" href="../public/stylesheets/style.css">
-
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/f8b439a839.js" crossorigin="anonymous"></script>
 
-    <title>Hello, world!</title>
+    <title><%= title %></title>
 
     <style>
       a {
         color: rgba(0,0,0,0.7);
       }
     </style>
+
+    
   </head>
 
   <body>
@@ -53,10 +52,11 @@
             <thead>
               <tr>
                 <th>Nome:</th>
-                <th>Idade:</th>
+                <th>Nascimento:</th>
                 <th>Telefone:</th>
                 <th>RG:</th>
                 <th>CPF:</th>
+                <th>Endereço:</th>
                 <th></th>
                 <th></th>
               </tr>
@@ -69,8 +69,9 @@
                 <td><%= user.phone %></td>
                 <td><%= user.rg %></td>
                 <td><%= user.cpf %></td>
+                <td><%= user.address %></td>
                 <th><a href="/users/edit/<%= user._id %>"><i class="far fa-edit" style="color: darkcyan"></i></a></th>
-                <th><a href="/users/delete/<%= user._id %>"><i class="far fa-trash-alt"></i></a></th>
+                <th><a href="javascript:void(0)" class="btnDelete" data-id="<%= user._id %>"><i class="far fa-trash-alt"></i></a></th>
               </tr>
               <% }) %>
               <tr>
@@ -85,10 +86,67 @@
         </div>
       </div>
     </div>
+
+
+    <!-- Modal Delete-->
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                 <h5 class="modal-title" id="exampleModalLabel">Ops! Tem certeza?</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Você realmente deseja excluir o usuário selecionado?
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-dark" data-dismiss="modal">Cancelar</button>
+                  <button type="button" class="btn btn-danger btnConfirmDeletion">Excluir</button>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script> 
+    <script>
+      $(document).ready(function() {
+        let id = null;
+        let btn = null;
+        $(document).on('click', '.btnDelete', function() {
+          id = $(this).data('id');
+          btn = $(this);
+          $("#modalDelete").modal('toggle');
+        });
+
+        $(document).on('click', '.btnConfirmDeletion', function() {
+          $.ajax({
+            method: 'GET',
+            url: '/users/delete/'+id
+          }).done(function(data) {
+            console.log(data)
+            if(data == 'success') {
+              $("#modalDelete").modal('toggle');
+                if(btn != null) {
+                  btn.closest('tr').remove();
+                  $("#modalDelete").modal('toggle');
+                }
+            } else {
+              alert('Falha ao excluir usuário');
+            }
+          });
+        });
+      });
+    </script>
+    
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+   
   </body>
 </html>

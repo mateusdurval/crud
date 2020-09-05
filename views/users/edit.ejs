@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title><%= title %></title>
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -42,11 +42,11 @@
                         <div class="form-row" style="margin-top: 1%">
                             <div class="col-3">
                                 <label for="cpf">CPF:</label>
-                                <input type="number" name="cpf" value="<%= user.cpf %>" class="form-control form-control-sm">
+                                <input type="text" name="cpf" value="<%= user.cpf %>" class="form-control form-control-sm">
                             </div>
                             <div class="col-2">
                                 <label for="rg">RG:</label>
-                                <input type="number" name="rg" value="<%= user.rg %>" class="form-control form-control-sm">
+                                <input type="text" name="rg" value="<%= user.rg %>" class="form-control form-control-sm">
                             </div>
                             <div class="col-5">
                                 <label for="address">Endereço:</label>

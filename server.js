@@ -29,12 +29,12 @@ app.get('/', (req, res) => {
         //console.log(count)
         if (err) return console.log(err)
 
-        res.render('users/index.ejs', {data: results})
+        res.render('users/index.ejs', {data: results, title: 'CRUD - Usuários'})
     })
 })
 //** returns form view for insertion */
 app.get('/users/create', (req, res) => {
-    res.render('users/create')
+    res.render('users/create', {title: 'Cadastrar usuário'})
 })
 //** insert in db */
 app.post('/users/insert', (req, res) =>  {
@@ -52,7 +52,7 @@ app.route('/users/edit/:id').get((req, res) => {
     db.collection('users').find({"_id": ObjectId(id)}).toArray((err, result) => {
         if (err) return console.log(err) 
 
-        res.render('users/edit.ejs', {user: result})
+        res.render('users/edit.ejs', {user: result, title: 'Editar usuário'})
     })
 })
 
@@ -91,6 +91,6 @@ app.route('/users/delete/:id').get((req, res) => {
         if (err) return res.send(500, err)
 
         console.log('Deleted user!')
-        res.redirect('/')
+        res.send('success')
     })
 })
