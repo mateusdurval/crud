@@ -20,7 +20,7 @@ MongoClient.connect(uri, {useUnifiedTopology: true}, (err, client) => {
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs')
 
-////////////////////  CRUD users  //////*/
+////////////////////  Table users  //////*/
 
 //** lists all users in the user table */
 app.get('/', (req, res) => {
