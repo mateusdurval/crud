@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
         res.render('users/index.ejs', {data: results, title: 'CRUD - Usuários'})
     })    
 })
-//** get total users from db */
+//** get total users from db (for ajax request's) */
 app.get('/users/total', (req, res) => {
     db.collection('users').find().count((err, result) => {
         res.status(200).send((result).toString())

@@ -15,6 +15,7 @@
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
     <!-- jQuery Mask Plugin -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
     <script>
@@ -94,6 +95,25 @@
         </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script> 
+    <script>
+        $(document).ready(function() {
+            $("#cep").on('change', function() {
+                let cep = $(this).val()
+                $.ajax({
+                    method: 'GET',
+                    url: 'https://viacep.com.br/ws/'+cep+'/json/'
+                }).done(function(data) {
+                    console.log(data)
+                    $("#city").val(data.localidade)
+                    $("#state").val(data.uf)
+                    $("#district").val(data.bairro)
+                    $("#street").val(data.logradouro)
+                    $("#number").focus()
+                })
+            })
+        })
+    </script>
     
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

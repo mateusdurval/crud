@@ -49,7 +49,7 @@
             <tbody>
               <% data.forEach(function(user) { %>
               <tr>
-                <td><a href="javascript:void(0)" class="btn btn-sm btn-dark btn-profile" data-name="<%= user.name %>" data-cpf="<%= user.cpf %>" data-rg="<%= user.rg %>" data-phone="<%= user.phone %>" data-address="<%= user.address %>" data-age="<%= user.age %>"><%= user.name %></a></td>
+                <td><a href="javascript:void(0)" class="btn btn-sm btn-dark btn-profile" data-name="<%= user.name %>" data-cpf="<%= user.cpf %>" data-rg="<%= user.rg %>" data-phone="<%= user.phone %>" data-address="<%= user.address %>" data-age="<%= user.age %>" data-street="<%= user.street %>" data-city="<%= user.city %>" data-state="<%= user.state %>" data-cep="<%= user.cep %>" data-bairro="<%= user.bairro %>" data-district="<%= user.district %>"><%= user.name %></a></td>
                 <td><%= user.age %></td>
                 <td><%= user.phone %></td>
                 <td><%= user.rg %></td>
@@ -104,13 +104,18 @@
                 </button>
               </div>
               <div class="modal-body">
-                <h5 class="name-profile"></h5> 
-                <hr>
+                <h5 class="name-profile"></h5>
                 <strong>CPF: </strong> <span class="cpf"></span><br>
                 <strong>RG: </strong> <span class="rg"></span><br>
                 <strong>Telefone: </strong> <span class="phone"></span><br>
-                <strong>Endereço: </strong> <span class="address"></span><br>
                 <strong>Nascimento: </strong> <span class="age"></span>
+                <hr>
+                <h5>Endereço</h5>
+                <strong>CEP: </strong> <span class="cep"></span><br>
+                <strong>Cidade: </strong> <span class="city"></span><br>
+                <strong>Estado: </strong> <span class="state"></span><br>
+                <strong>Bairro: </strong> <span class="district"></span><br>
+                <strong>Rua: </strong> <span class="street"></span>
               </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-dark" data-dismiss="modal">Fechar</button>
@@ -119,9 +124,21 @@
       </div>
     </div>
 
+    <!-- Script Delete -->
     <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script> 
     <script>
+      //Get total users from DB
+      function getTotalUsers() {
+        $.ajax({
+          method: 'GET',
+          url: '/users/total'
+        }).done(function(data) {
+          $(".total").text(data)
+        });
+      }
+
       $(document).ready(function() {
+        getTotalUsers();
         let id = null;
         let btn = null;
         $(document).on('click', '.btnDelete', function() {
@@ -141,6 +158,7 @@
                 if(btn != null) {
                   btn.closest('tr').remove();
                   $("#modalDelete").modal('toggle');
+                  getTotalUsers();
                 }
             } else {
               alert('Falha ao excluir usuário, ele já pode ter sido excluído!');
@@ -149,18 +167,7 @@
         });
       });
     </script>
-
-    <script>
-      $(document).ready(function() {
-        $.ajax({
-          method: 'GET',
-          url: '/users/total'
-        }).done(function(data) {
-          $(".total").text(data)
-        });
-      })
-    </script>
-
+   
     <script>
       $(document).ready(function() {
         $(document).on('click', '.btn-profile', function() {
@@ -168,9 +175,14 @@
           $(".name-profile").text($(this).data('name'))
           $(".cpf").text($(this).data('cpf'))
           $(".rg").text($(this).data('rg'))
-          $(".address").text($(this).data('address'))
           $(".age").text($(this).data('age'))
           $(".phone").text($(this).data('phone'))
+
+          $(".cep").text($(this).data('cep'))
+          $(".district").text($(this).data('district'))
+          $(".street").text($(this).data('street'))
+          $(".city").text($(this).data('city'))
+          $(".state").text($(this).data('state'))
         });
       });
     </script>
