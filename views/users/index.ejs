@@ -15,11 +15,10 @@
 
     <style>
       a {
-        color: rgba(0,0,0,0.7);
+        color: rgba(0,0,0,0.5);
       }
     </style>
 
-    
   </head>
 
   <body>    
@@ -50,7 +49,7 @@
             <tbody>
               <% data.forEach(function(user) { %>
               <tr>
-                <td><%= user.name %></td>
+                <td><a href="javascript:void(0)" class="btn btn-sm btn-dark btn-profile" data-name="<%= user.name %>" data-cpf="<%= user.cpf %>" data-rg="<%= user.rg %>" data-phone="<%= user.phone %>" data-address="<%= user.address %>" data-age="<%= user.age %>"><%= user.name %></a></td>
                 <td><%= user.age %></td>
                 <td><%= user.phone %></td>
                 <td><%= user.rg %></td>
@@ -73,10 +72,9 @@
       </div>
     </div>
 
-
+    
+    
     <!-- Modal Delete-->
-
-    <!-- Modal -->
     <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
           <div class="modal-content">
@@ -96,6 +94,33 @@
           </div>
       </div>
     </div>
+
+    <!-- Modal Profile-->
+    <div class="modal fade modal-profile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                 <h3 class="modal-title" id="exampleModalLabel">Dados do usuário</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <h5 class="name-profile"></h5> 
+                <hr>
+                <strong>CPF: </strong> <span class="cpf"></span><br>
+                <strong>RG: </strong> <span class="rg"></span><br>
+                <strong>Telefone: </strong> <span class="phone"></span><br>
+                <strong>Endereço: </strong> <span class="address"></span><br>
+                <strong>Nascimento: </strong> <span class="age"></span>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-dark" data-dismiss="modal">Fechar</button>
+              </div>
+          </div>
+      </div>
+    </div>
+
 
     <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script> 
     <script>
@@ -121,7 +146,7 @@
                   $("#modalDelete").modal('toggle');
                 }
             } else {
-              alert('Falha ao excluir usuário');
+              alert('Falha ao excluir usuário, ele já pode ter sido excluído!');
             }
           });
         });
@@ -137,6 +162,20 @@
           $(".total").text(data)
         });
       })
+    </script>
+
+    <script>
+      $(document).ready(function() {
+        $(document).on('click', '.btn-profile', function() {
+          $(".modal-profile").modal('toggle')
+          $(".name-profile").text($(this).data('name'))
+          $(".cpf").text($(this).data('cpf'))
+          $(".rg").text($(this).data('rg'))
+          $(".address").text($(this).data('address'))
+          $(".age").text($(this).data('age'))
+          $(".phone").text($(this).data('phone'))
+        });
+      });
     </script>
     
     <!-- Optional JavaScript -->
