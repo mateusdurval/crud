@@ -41,7 +41,7 @@
                 <th>Telefone:</th>
                 <th>RG:</th>
                 <th>CPF:</th>
-                <th>Endereço:</th>
+                <th>CEP:</th>
                 <th></th>
                 <th></th>
               </tr>
@@ -49,12 +49,12 @@
             <tbody>
               <% data.forEach(function(user) { %>
               <tr>
-                <td><a href="javascript:void(0)" class="btn btn-sm btn-dark btn-profile" data-name="<%= user.name %>" data-cpf="<%= user.cpf %>" data-rg="<%= user.rg %>" data-phone="<%= user.phone %>" data-address="<%= user.address %>" data-age="<%= user.age %>" data-street="<%= user.street %>" data-city="<%= user.city %>" data-state="<%= user.state %>" data-cep="<%= user.cep %>" data-bairro="<%= user.bairro %>" data-district="<%= user.district %>"><%= user.name %></a></td>
+                <td><a href="javascript:void(0)" class="btn btn-sm btn-dark btn-profile" data-name="<%= user.name %>" data-cpf="<%= user.cpf %>" data-rg="<%= user.rg %>" data-phone="<%= user.phone %>" data-address="<%= user.address %>" data-age="<%= user.age %>" data-street="<%= user.street %>" data-city="<%= user.city %>" data-state="<%= user.state %>" data-cep="<%= user.cep %>" data-bairro="<%= user.bairro %>" data-district="<%= user.district %>" data-number="<%= user.number %>"><%= user.name %></a></td>
                 <td><%= user.age %></td>
                 <td><%= user.phone %></td>
                 <td><%= user.rg %></td>
                 <td><%= user.cpf %></td>
-                <td><%= user.address %></td>
+                <td><%= user.district %>, <%= user.city %> - <%= user.state %></td>
                 <th><a href="/users/edit/<%= user._id %>"><i class="far fa-edit" style="color: darkcyan"></i></a></th>
                 <th><a href="javascript:void(0)" class="btnDelete" data-id="<%= user._id %>" data-name="<%= user.name %>"><i class="far fa-trash-alt"></i></a></th>
               </tr>
@@ -115,7 +115,8 @@
                 <strong>Cidade: </strong> <span class="city"></span><br>
                 <strong>Estado: </strong> <span class="state"></span><br>
                 <strong>Bairro: </strong> <span class="district"></span><br>
-                <strong>Rua: </strong> <span class="street"></span>
+                <strong>Rua: </strong> <span class="street"></span><br>
+                <strong>Número: </strong> <span class="number"></span>
               </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-dark" data-dismiss="modal">Fechar</button>
@@ -183,6 +184,7 @@
           $(".street").text($(this).data('street'))
           $(".city").text($(this).data('city'))
           $(".state").text($(this).data('state'))
+          $(".number").text($(this).data('number'))
         });
       });
     </script>
