@@ -79,32 +79,38 @@
                     </div>
 
                     <div class="col-md-12 my-border" style="margin-top: 1%">
-                        <h4>Endereço</h4>
+                        <h4>Endereço <button class="btn btn-sm btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            <i class="fas fa-info-circle"></i>
+                        </button></h4>
+
+                        <div class="collapse" id="collapseExample">
+                            <p><i> Este sistema utiliza requisições do ViaCEP para agilizar o seu cadastro! <a href="https://viacep.com.br/">ViaCEP</a>.</i></p>
+                        </div>
 
                         <div class="form-row">
                             <div class="col-2">
                                 <label for="cep">CEP:</label>
-                                <input type="text" name="cep" id="cep" class="form-control form-control-sm cep" placeholder="41515-324" required="">
+                                <input type="text" name="cep" id="cep" class="form-control form-control-sm cep" placeholder="Ex.: 41515-324" required="">
                             </div>
                             <div class="col-2">
                                 <label for="city">Cidade:</label>
-                                <input type="text" name="city" id="city" class="form-control form-control-sm" placeholder="Salvador" required="">
+                                <input type="text" name="city" id="city" class="form-control form-control-sm" placeholder="Ex.: Salvador" required="">
                             </div>
                             <div class="col-1">
                                 <label for="state">Estado:</label>
-                                <input type="text" name="state" id="state" class="form-control form-control-sm" placeholder="BA" required="">
+                                <input type="text" name="state" id="state" class="form-control form-control-sm" placeholder="Ex.: BA" required="">
                             </div>
                             <div class="col-2">
                                 <label for="country">Bairro:</label>
-                                <input type="text" name="district" id="district" class="form-control form-control-sm" placeholder="Pituba" required="">
+                                <input type="text" name="district" id="district" class="form-control form-control-sm" placeholder="Ex.: Pituba" required="">
                             </div>
                             <div class="col-3">
                                 <label for="country">Rua:</label>
-                                <input type="text" name="street" id="street" class="form-control form-control-sm" placeholder="Rua XXX, Quadra 06" required="">
+                                <input type="text" name="street" id="street" class="form-control form-control-sm" placeholder="Ex.: Rua XXX, Quadra 06" required="">
                             </div>
                             <div class="col-1">
                                 <label for="country">Número:</label>
-                                <input type="number" name="number" id="number" class="form-control form-control-sm" placeholder="75" required="">
+                                <input type="number" name="number" id="number" class="form-control form-control-sm" placeholder="Ex.: 95" required="">
                             </div>
                         </div>
                     </div>
