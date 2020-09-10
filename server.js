@@ -71,6 +71,13 @@ app.route('/users/update').post((req, res) => {
     var rg = req.body.rg
     var address = req.body.address
 
+    var cep = req.body.cep
+    var city = req.body.city
+    var state = req.body.state
+    var district = req.body.district
+    var street = req.body.street
+    var number = req.body.number
+
     db.collection('users').updateOne({_id: ObjectId (id)}, {
         $set: {
             name: name,
@@ -78,7 +85,13 @@ app.route('/users/update').post((req, res) => {
             phone: phone,
             cpf: cpf,
             rg: rg,
-            address: address
+            address: address,
+            cep: cep,
+            city: city,
+            state: state,
+            district: district,
+            street: street,
+            number: number
         }
     }, (err, result) => {
         if (err) return res.send(err)

@@ -28,6 +28,9 @@
         $(document).ready(function ($) {
             $('.rg').mask('00.000.000-00');
         })
+        $(document).ready(function ($) {
+            $('.cep').mask('00000-000');
+        })
     </script>
 
     <style>
@@ -42,56 +45,84 @@
     </script>
     <div class="container">
         <div class="row">
-                <div class="col-md-12 my-border" style="margin-top: 1%">
-                    <h3 class="light">Editar usuário</h3>
+            <div class="col-md-12 my-border" style="margin-top: 1%">
+                <h3 class="light" style="text-align: center;">Editar usuário</h3>
 
-                    <% user.forEach(function(user) { %>
+                <% user.forEach(function(user) { %>
 
-                        <form action="/users/update" method="POST">
+                    <form action="/users/update" method="POST">
+                        <div class="col-md-12 my-border">
+                            <h4>Dados do usuário</h4>
                             <div class="form-row" style="margin-top: 2%">
-
                                 <input type="hidden" name="id" value="<%= user._id %>">
 
                                 <div class="col-4">
-                                    <label for="name">Nome:</label>
-                                    <input type="text" name="name" value="<%= user.name %>" class="form-control form-control-sm" required="">
+                                    <label for="name"><i class="far fa-user-circle"></i> Nome:</label>
+                                    <input type="text" name="name" class="form-control form-control-sm" required="" value="<%= user.name %>">
                                 </div>
                                 <div class="col-3">
-                                    <label for="age">Nascimento:</label>
-                                    <input type="date" name="age" value="<%= user.age %>" class="form-control form-control-sm" required="">
+                                    <label for="age"><i class="far fa-calendar-alt"></i> Nascimento:</label>
+                                    <input type="date" name="age" class="form-control form-control-sm" required=""  value="<%= user.age %>">
                                 </div>
                                 <div class="col-3">
-                                    <label for="phone">Telefone celular</label>
-                                    <input type="text" name="phone" value="<%= user.phone %>" class="form-control form-control-sm phone" required="">
+                                    <label for="phone"><i class="fas fa-mobile-alt"></i> Telefone celular</label>
+                                    <input type="text" name="phone" class="form-control form-control-sm phone" required=""  value="<%= user.phone %>">
                                 </div>
                             </div>
 
                             <div class="form-row" style="margin-top: 1%">
                                 <div class="col-3">
-                                    <label for="cpf">CPF:</label>
-                                    <input type="text" name="cpf" value="<%= user.cpf %>" class="form-control form-control-sm cpf" required="">
+                                    <label for="cpf"><i class="far fa-id-card"></i> CPF:</label>
+                                    <input type="text" name="cpf" class="form-control form-control-sm cpf" required="" value="<%= user.cpf %>">
+                                </div>
+                                <div class="col-3">
+                                    <label for="rg"><i class="far fa-address-book"></i> RG:</label>
+                                    <input type="text" name="rg" class="form-control form-control-sm rg" required="" value="<%= user.rg %>">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 my-border" style="margin-top: 1%;">
+                            <h4>Endereço</h4>
+                            <div class="form-row">
+                                <div class="col-2">
+                                    <label for="cep">CEP:</label>
+                                    <input type="text" name="cep" id="cep" class="form-control form-control-sm cep" required="" value="<%= user.cep %>">
                                 </div>
                                 <div class="col-2">
-                                    <label for="rg">RG:</label>
-                                    <input type="text" name="rg" value="<%= user.rg %>" class="form-control form-control-sm rg" required="">
+                                    <label for="city">Cidade:</label>
+                                    <input type="text" name="city" id="city" class="form-control form-control-sm" required="" value="<%= user.city %>">
                                 </div>
-                                <div class="col-5">
-                                    <label for="address">Endereço:</label>
-                                    <input type="text" name="address" value="<%= user.address %>" class="form-control form-control-sm" required="">
+                                <div class="col-1">
+                                    <label for="state">Estado:</label>
+                                    <input type="text" name="state" id="state" class="form-control form-control-sm" required="" value="<%= user.state %>">
+                                </div>
+                                <div class="col-2">
+                                    <label for="country">Bairro:</label>
+                                    <input type="text" name="district" id="district" class="form-control form-control-sm" required="" value="<%= user.district %>">
+                                </div>
+                                <div class="col-3">
+                                    <label for="country">Rua:</label>
+                                    <input type="text" name="street" id="street" class="form-control form-control-sm" required="" value="<%= user.street %>">
+                                </div>
+                                <div class="col-1">
+                                    <label for="country">Número:</label>
+                                    <input type="number" name="number" id="number" class="form-control form-control-sm" required="" value="<%= user.number %>">
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="form-row" style="margin-top: 1%">
-                                <div class="col-md-12">
-                                    <a href="/" class="btn btn-sm btn-dark"><i class="far fa-arrow-alt-circle-left"></i> Cancelar </a>
-                                    <button type="submit" class="btn btn-sm btn-success">Editar <i class="far fa-edit"></i></button>
-                                </div>
+                        <div class="form-row" style="margin-top: 1%">
+                            <div class="col-md-12">
+                                <a href="/" class="btn btn-sm btn-dark"><i class="far fa-arrow-alt-circle-left"></i> Cancelar </a>
+                                <button type="submit" class="btn btn-sm btn-success">Editar <i class="far fa-edit"></i></button>
                             </div>
-                        </form>
+                        </div>
+                    </form>
 
-                    <% }) %>
+                <% }) %>
 
-                </div>
+            </div>
         </div>
     </div>
 
