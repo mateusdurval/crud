@@ -19,8 +19,22 @@
       }
     </style>
   </head>
-
   <body>
+
+    <div class="container">
+      <ul class="nav justify-content-center">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Cadastro de Usuários</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/products">Cadastro de Produtos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/course">Cadastro de Aulas</a>
+        </li>
+      </ul>
+    </div>
+
     <div class="container"> 
       <div class="row">
         <div class="col-md-12" style="margin-top: 2%">
@@ -48,7 +62,7 @@
             <tbody>
               <% data.forEach(function(user) { %>
               <tr>
-                <td><a href="javascript:void(0)" class="btn btn-sm btn-dark btn-profile" data-name="<%= user.name %>" data-cpf="<%= user.cpf %>" data-rg="<%= user.rg %>" data-phone="<%= user.phone %>" data-address="<%= user.address %>" data-age="<%= user.age %>" data-street="<%= user.street %>" data-city="<%= user.city %>" data-state="<%= user.state %>" data-cep="<%= user.cep %>" data-bairro="<%= user.bairro %>" data-district="<%= user.district %>" data-number="<%= user.number %>"><%= user.name %></a></td>
+                <td><a href="javascript:void(0)" class="btn btn-sm btn-dark btn-profile" data-name="<%= user.name %>" data-cpf="<%= user.cpf %>" data-rg="<%= user.rg %>" data-phone="<%= user.phone %>" data-address="<%= user.address %>" data-age="<%= user.age %>" data-street="<%= user.street %>" data-city="<%= user.city %>" data-state="<%= user.state %>" data-cep="<%= user.cep %>" data-bairro="<%= user.bairro %>" data-district="<%= user.district %>" data-number="<%= user.number %>"><i class="far fa-user"></i> <%= user.name %></a></td>
                 <td><%= user.age %></td>
                 <td><%= user.phone %></td>
                 <td><%= user.rg %></td>
@@ -103,7 +117,7 @@
                 </button>
               </div>
               <div class="modal-body">
-                <h5 class="name-profile"></h5>
+                <h5 class="name-profile"></h5> 
                 <strong>CPF: </strong> <span class="cpf"></span><br>
                 <strong>RG: </strong> <span class="rg"></span><br>
                 <strong>Telefone: </strong> <span class="phone"></span><br>
