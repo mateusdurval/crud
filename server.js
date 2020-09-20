@@ -273,6 +273,86 @@ app.route('/course/destroy/:id').get((req, res) => {
         res.send('success')
     })
 })
+//___________________________________ TABLE MEDICINE ________________________________________
+
+// return view index and list all consults from db
+app.route('/medicine').get((req, res) => { 
+    db.collection('medicine').find().toArray((err, results) => {
+        console.log(results)
+        if (err) return console.log(err)
+        res.render('medicine/index.ejs', {data: results, title: 'CRUD - Medicine'})
+    }) 
+})
+//** get total consults from db (for ajax request's) */
+app.get('/medicine/total', (req, res) => {
+    db.collection('medicine').find().count((err, result) => {
+        res.status(200).send((result).toString())
+    })
+})
+/** return view form for to create*/
+app.route('/medicine/create').get((req, res) => { 
+    res.render('medicine/create.ejs', {title: 'Cadastrar consulta'})
+})
+/** insert consult in db */
+app.route('/medicine/insert').post((req, res) => { 
+    db.collection('medicine').save(req.body, (err, result) => {
+        if (err) return console.log(err)
+
+        console.log ('Inserted in the database!')
+        res.redirect('/medicine')
+    })
+    console.log(req.body)
+})
+/** return view form for to edit*/
+app.route('/medicine/edit/:id').get((req, res) => {
+    var id = req.params.id
+    console.log(id)
+    db.collection('medicine').find({"_id": ObjectId(id)}).toArray((err, result) => {
+        if (err) return console.log(err) 
+
+        console.log(result)
+
+        res.render('medicine/edit.ejs', {medicine: result, title: 'Editar consulta'})
+    })
+})
+/** update consulta on db */
+app.route('/medicine/update').post((req, res) => {
+    console.log('ID:', req.body.id)
+
+    var id = req.body.id
+    var name_paciente = req.body.name_paciente
+    var medico = req.body.medico
+    var date = req.body.date
+    var time = req.body.time
+    var especializacao = req.body.especializacao
+
+    db.collection('medicine').updateOne({_id: ObjectId (id)}, {
+        $set: {
+            name_paciente: name_paciente,
+            medico: medico,
+            date: date,
+            time: time,
+            especializacao: especializacao
+        }
+    }, (err, result) => {
+        if (err) return res.send(err)
+        console.log('Atualizado com sucesso!')
+        res.redirect('/medicine')
+    })
+})
+
+app.route('/medicine/destroy/:id').get((req, res) => {
+    console.log('ID:', req.params.id)
+    var id = req.params.id
+
+    db.collection('medicine').deleteOne({_id: ObjectId(id)}, (err, result) => {
+        if (err) return res.send(500, err)
+
+        console.log('Deleted user!')
+        res.send('success')
+    })
+})
+
 
 
 

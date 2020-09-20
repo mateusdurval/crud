@@ -34,10 +34,10 @@
           <a class="nav-link" href="/products">Cadastro de Produtos</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" href="/course">Cadastro de Aulas</a>
+            <a class="nav-link" href="/course">Cadastro de Aulas</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/medicine">Cadastro de Consultas</a>
+            <a class="nav-link active" href="/medicine">Cadastro de Consultas</a>
         </li>
       </ul>
     </div>
@@ -45,7 +45,7 @@
     <div class="container"> 
       <div class="row">
         <div class="col-md-12" style="margin-top: 2%">
-          <h3 style="text-align: center">Aulas cadastradas - <span class="total"></span></h3>
+          <h3 style="text-align: center">Consultas cadastradas - <span class="total"></span></h3>
         </div>
       </div>
     </div>
@@ -56,27 +56,25 @@
           <table class="table table-striped table-hover">
             <thead>
               <tr>
-                <th>Matéria:</th>
-                <th>Encontro:</th>
+                <th>Nome do paciente:</th>
+                <th>Médico:</th>
+                <th>Data:</th>
                 <th>Horário:</th>
-                <th>Professor(a):</th>
-                <th>Turma:</th>
-                <th>QTD Alunos:</th>
+                <th>Especialização:</th>
                 <th></th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
-                <% data.forEach(function(course) { %>
+                <% data.forEach(function(consulta) { %>
                     <tr>
-                        <td><a href="javascript:void(0)" class="btn btn-sm btn-dark btn-info" data-materia="<%= course.materia %>" data-meeting="<%= course.meeting %>" data-time="<%= course.time %>" data-professor="<%= course.professor %>" data-group="<%= course.group %>"><i class="fab fa-buffer"></i> <%= course.materia %></a></td>
-                        <td><%= course.meeting %></td>
-                        <td><%= course.time %></td>
-                        <td><%= course.professor %></td>
-                        <td><%= course.group %></td>
-                        <td><%= course.qtd_students %></td>
-                        <td><a href="/course/edit/<%= course._id %>" class="btn-delete"><i class="far fa-edit" style="color: darkcyan"></i></a></td>
-                        <td><a href="javascript:void(0)" class="btn-delete" data-class="<%= course.materia %>" data-id="<%= course._id %>"><i class="far fa-trash-alt"></i></a></td>
+                        <td><a href="javascript:void(0)" class="btn btn-sm btn-dark btn-description" data-especializacao="<%= consulta.especializacao %>" data-nome_medico="<%= consulta.medico %>" data-date="<%= consulta.date %>" data-time="<%= consulta.time %>" data-name_paciente="<%= consulta.name_paciente %>"><%= consulta.name_paciente %></a></td>
+                        <td><%= consulta.medico %></td>
+                        <td><%= consulta.date %></td>
+                        <td><%= consulta.time %></td>
+                        <td><%= consulta.especializacao %></td>
+                        <td><a href="/medicine/edit/<%= consulta._id %>"><i class="far fa-edit" style="color: darkcyan"></i></a></td>
+                        <td><a href="javascript:void(0)" class="btn-delete" data-id="<%= consulta._id %>" data-name_paciente="<%= consulta.name_paciente %>"><i class="far fa-trash-alt"></i></a></td>
                     </tr>
                 <% }) %>
             </tbody>
@@ -86,7 +84,7 @@
 
       <div class="row">
         <div class="col-md-12" style="text-align: center;">
-          <a href="/course/create" class="btn btn-sm btn-success">Cadastrar <i class="fab fa-buffer"></i></a>
+          <a href="/medicine/create" class="btn btn-sm btn-success">Cadastrar</a>
         </div>
       </div>
     </div>
@@ -96,17 +94,18 @@
       <div class="modal-dialog">
           <div class="modal-content">
               <div class="modal-header">
-                 <h3 class="modal-title" id="exampleModalLabel">Dados do Produto</h3>
+                 <h3 class="modal-title" id="exampleModalLabel">Dados da Consulta</h3>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
-                <h5 class="name-materia"></h5> 
-                <strong>Professor: </strong><span class="professor"></span><br>
-                <strong>Encontro: </strong><span class="meeting"></span><br>
+                <h5 class="name-consulta"></h5>
+                <strong>Paciente: </strong><span class="paciente"></span><br>
+                <strong>Dia: </strong><span class="date"></span><br>
                 <strong>Horário: </strong><span class="time"></span><br>
-                <strong>Turma: </strong><span class="group"></span><br>
+                <hr>
+                <strong>Médico: </strong><span class="nome_medico"></span><br>
               </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-dark" data-dismiss="modal">Fechar</button>
@@ -114,7 +113,7 @@
           </div>
       </div>
     </div>
-
+    
     <!-- Modal Delete-->
     <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -126,7 +125,7 @@
                 </button>
               </div>
               <div class="modal-body">
-                Você realmente deseja excluir a aula de <strong><span class="class"></span></strong> ?
+                Você realmente deseja excluir a consulta do paciente <strong><span class="paciente_consulta"></span></strong> ?
               </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-dark" data-dismiss="modal">Cancelar</button>
@@ -138,52 +137,53 @@
 
     <!-- Toast Aviso -->
     <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="5000" style="position: absolute; top: 0; right: 0; margin-top: 1%; margin-right: 1%">
-      <div class="toast-header">
-        <strong class="mr-auto">Aviso!</strong>
-        <small class="text-muted">Agora</small>
-        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <div class="toast-header">
+          <strong class="mr-auto">Aviso!</strong>
+          <small class="text-muted">Agora</small>
+          <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="toast-body" style="background-color: #f1f1f1;">
+          <p class="text-toast"></p>
+        </div>
       </div>
-      <div class="toast-body" style="background-color: #f1f1f1;">
-        <p class="text-toast"></p>
-      </div>
-    </div>
 
     <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script> 
+
     <script>
-        function getTotalClass() {
-          $.ajax({
-              method: 'GET',
-              url: '/course/total'
-          }).done(function(data) {
-              $(".total").text(data)
-          });
+        function getTotalConsutes() {
+            $.ajax({
+                method: 'GET',
+                url: '/medicine/total'
+            }).done(function(data) {
+                $(".total").text(data)
+            });
         }
 
         $(document).ready(function() {
-            getTotalClass()
+            getTotalConsutes()
             let buttonRemove = null;
             let id = null;
             $(document).on('click', '.btn-delete', function() {
                 buttonRemove = $(this)
                 id = $(this).data('id')
                 $("#modalDelete").modal('toggle')
-                $(".class").text($(this).data('class'))
+                $(".paciente_consulta").text($(this).data('name_paciente'))
             })
 
             $(document).on('click', '.btnConfirmDeletion', function() {
                 $.ajax({
                     method: 'GET',
-                    url: '/course/destroy/'+id
+                    url: '/medicine/destroy/'+id
                 }).done(function(data) {
                     if(data == 'success') {
                         if(buttonRemove != null) {
                             buttonRemove.closest('tr').remove()
                             $("#modalDelete").modal('toggle')
                             $(".toast").toast('show');
-                            $(".text-toast").text('Aula removida com sucesso!')
-                            getTotalClass();
+                            $(".text-toast").text('Consulta removida com sucesso!')
+                            getTotalConsutes();
                         }
                     }
                 })
@@ -193,13 +193,13 @@
 
     <script>
       $(document).ready(function() {
-        $(document).on('click', '.btn-info', function() {
+        $(document).on('click', '.btn-description', function() {
           $(".modalDescription").modal('toggle')
-          $(".name-materia").text($(this).data('materia'))
-          $(".professor").text($(this).data('professor'))
-          $(".meeting").text($(this).data('meeting'))
+          $(".name-consulta").text($(this).data('especializacao'))
+          $(".paciente").text($(this).data('name_paciente'))
+          $(".date").text($(this).data('date'))   
           $(".time").text($(this).data('time'))
-          $(".group").text($(this).data('group'))
+          $(".nome_medico").text($(this).data('nome_medico'))
         })
       })
     </script>
