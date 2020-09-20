@@ -15,22 +15,26 @@
 
     <style>
       a {
-        color: rgba(0,0,0,0.5);
+        text-decoration: none;
+      }
+
+      .btn-delete {
+        color: rgba(0,0,0,0.7)
       }
     </style>
   </head>
   <body>
 
     <div class="container">
-      <ul class="nav justify-content-center">
+      <ul class="nav nav-tabs justify-content-center">
         <li class="nav-item">
-          <a class="nav-link active" href="/">Cadastro de Usuários</a>
+          <a class="nav-link" href="/">Cadastro de Usuários</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/products">Cadastro de Produtos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/course">Cadastro de Aulas</a>
+            <a class="nav-link active" href="/course">Cadastro de Aulas</a>
         </li>
       </ul>
     </div>
@@ -68,7 +72,7 @@
                         <td><%= course.professor %></td>
                         <td><%= course.group %></td>
                         <td><%= course.qtd_students %></td>
-                        <td><a href="/course/edit/<%= course._id %>"><i class="far fa-edit" style="color: darkcyan"></i></a></td>
+                        <td><a href="/course/edit/<%= course._id %>" class="btn-delete"><i class="far fa-edit" style="color: darkcyan"></i></a></td>
                         <td><a href="javascript:void(0)" class="btn-delete" data-class="<%= course.materia %>" data-id="<%= course._id %>"><i class="far fa-trash-alt"></i></a></td>
                     </tr>
                 <% }) %>

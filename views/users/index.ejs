@@ -15,22 +15,26 @@
 
     <style>
       a {
-        color: rgba(0,0,0,0.5);
+        text-decoration: none;
+      }
+
+      .btn-delete {
+        color: rgba(0,0,0,0.7)
       }
     </style>
   </head>
   <body>
 
     <div class="container">
-      <ul class="nav justify-content-center">
+      <ul class="nav nav-tabs justify-content-center">
         <li class="nav-item">
-          <a class="nav-link" href="/">Cadastro de Usuários</a>
+          <a class="nav-link active" href="/">Cadastro de Usuários</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/products">Cadastro de Produtos</a>
+          <a class="nav-link " href="/products">Cadastro de Produtos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/course">Cadastro de Aulas</a>
+            <a class="nav-link" href="/course">Cadastro de Aulas</a>
         </li>
       </ul>
     </div>
@@ -69,7 +73,7 @@
                 <td><%= user.cpf %></td>
                 <td><%= user.district %>, <%= user.city %> - <%= user.state %></td>
                 <th><a href="/users/edit/<%= user._id %>"><i class="far fa-edit" style="color: darkcyan"></i></a></th>
-                <th><a href="javascript:void(0)" class="btnDelete" data-id="<%= user._id %>" data-name="<%= user.name %>"><i class="far fa-trash-alt"></i></a></th>
+                <th><a href="javascript:void(0)" class="btnDelete btn-delete" data-id="<%= user._id %>" data-name="<%= user.name %>"><i class="far fa-trash-alt"></i></a></th>
               </tr>
               <% }) %>
               <tr>
