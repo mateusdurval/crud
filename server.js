@@ -278,7 +278,6 @@ app.route('/course/destroy/:id').get((req, res) => {
 // return view index and list all consults from db
 app.route('/medicine').get((req, res) => { 
     db.collection('medicine').find().toArray((err, results) => {
-        console.log(results)
         if (err) return console.log(err)
         res.render('medicine/index.ejs', {data: results, title: 'CRUD - Medicine'})
     }) 
