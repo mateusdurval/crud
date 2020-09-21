@@ -353,6 +353,84 @@ app.route('/medicine/destroy/:id').get((req, res) => {
     })
 })
 
+//___________________________________ TABLE STUDENTS ________________________________________
+
+app.route('/student').get((req, res) => { 
+    db.collection('student').find().toArray((err, results) => {
+        console.log(results)
+        if (err) return console.log(err)
+        res.render('student/index.ejs', {data: results, title: 'CRUD - Student'})
+    }) 
+})
+//** get total consults from db (for ajax request's) */
+app.get('/student/total', (req, res) => {
+    db.collection('student').find().count((err, result) => {
+        res.status(200).send((result).toString())
+    })
+})
+/** return view form for to create*/
+app.route('/student/create').get((req, res) => { 
+    res.render('student/create.ejs', {title: 'Cadastrar consulta'})
+})
+/** insert consult in db */
+app.route('/student/insert').post((req, res) => { 
+    db.collection('student').save(req.body, (err, result) => {
+        if (err) return console.log(err)
+
+        console.log ('Inserted in the database!')
+        res.redirect('/student')
+    })
+    console.log(req.body)
+})
+/** return view form for to edit*/
+app.route('/student/edit/:id').get((req, res) => {
+    var id = req.params.id
+    console.log(id)
+    db.collection('student').find({"_id": ObjectId(id)}).toArray((err, result) => {
+        if (err) return console.log(err) 
+
+        console.log(result)
+
+        res.render('student/edit.ejs', {student: result, title: 'Editar consulta'})
+    })
+})
+/** update consulta on db */
+app.route('/student/update').post((req, res) => {
+    console.log('ID:', req.body.id)
+
+    var id = req.body.id
+    var name = req.body.name
+    var rg = req.body.rg
+    var cpf = req.body.cpf
+    var registration = req.body.registration
+    var course = req.body.course
+
+    db.collection('student').updateOne({_id: ObjectId (id)}, {
+        $set: {
+            name: name,
+            rg: rg,
+            cpf: cpf,
+            registration: registration,
+            course: course
+        }
+    }, (err, result) => {
+        if (err) return res.send(err)
+        console.log('Atualizado com sucesso!')
+        res.redirect('/student')
+    })
+})
+
+app.route('/student/destroy/:id').get((req, res) => {
+    console.log('ID:', req.params.id)
+    var id = req.params.id
+
+    db.collection('student').deleteOne({_id: ObjectId(id)}, (err, result) => {
+        if (err) return res.send(500, err)
+
+        console.log('Deleted user!')
+        res.send('success')
+    })
+})
 
 
 
