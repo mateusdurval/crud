@@ -31,7 +31,7 @@
           <a class="nav-link " href="/">Cadastro de Usuários</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="/products">Cadastro de Produtos</a>
+          <a class="nav-link" href="/products">Cadastro de Produtos</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/course">Cadastro de Aulas</a>
@@ -40,15 +40,15 @@
             <a class="nav-link" href="/medicine">Cadastro de Consultas</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/student">Cadastro de Alunos</a>
-      </li>
+          <a class="nav-link active" href="/student">Cadastro de Alunos</a>
+        </li>
       </ul>
     </div>
 
     <div class="container"> 
       <div class="row">
         <div class="col-md-12" style="margin-top: 2%">
-          <h3 style="text-align: center">Produtos cadastrados - <span class="total"></span></h3>
+          <h3 style="text-align: center">Alunos cadastrados - <span class="total"></span></h3>
         </div>
       </div>
     </div>
@@ -60,26 +60,26 @@
             <thead>
               <tr>
                 <th>Nome:</th>
-                <th>Modelo:</th>
-                <th>Marca:</th>
-                <th>EAN:</th>
-                <th>Made:</th>
-                <th>Nº de Série</th>
+                <th>RG:</th>
+                <th>CPF:</th>
+                <th>Matrícula:</th>
+                <th>Curso:</th>
                 <th></th>
                 <th></th>
+                <th></th>   
               </tr>
             </thead>
             <tbody>
-                <% data.forEach(function(product) {%>
+                <% data.forEach(function(student) { %>
                     <tr>
-                        <td><a href="javascript:void(0)" class="btn btn-sm btn-dark btn-description" data-name="<%= product.name %>" data-model="<%= product.model %>" data-brand="<%= product.brand %>"><i class="fas fa-box-open"></i> <%= product.name %></a></td>
-                        <td><%= product.model %></td>
-                        <td><%= product.brand %></td>
-                        <td><%= product.ean %></td>
-                        <td><%= product.made %></td>
-                        <td><%= product.serial_number %></td>
-                        <td><a href="/products/edit/<%= product._id %>"><i class="far fa-edit" style="color: darkcyan"></i></a></td>
-                        <td><a href="javascript:void(0)" class="btn-delete" data-name="<%= product.name %>" data-model="<%= product.model %>" data-id="<%= product._id %>"><i class="far fa-trash-alt"></i></a></td>
+                        <td><a href="javascript:void(0)" class="btn btn-sm btn-dark btn-info" data-name="<%= student.name %>" data-rg="<%= student.rg %>" data-cpf="<%= student.cpf %>" data-registration="<%= student.registration %>" data-course="<%= student.course %>"><i class="fab fa-buffer"></i> <%= student.name %></a></td>
+                        <td><%= student.rg %></td>
+                        <td><%= student.cpf %></td>
+                        <td><%= student.registration %></td>
+                        <td><%= student.course %></td>
+                        <td><%= student.qtd_students %></td>
+                        <td><a href="/student/edit/<%= student._id %>"><i class="far fa-edit" style="color: darkcyan"></i></a></td>
+                        <td><a href="javascript:void(0)" class="btn-delete" data-name="<%= student.name %>" data-id="<%= student._id %>"><i class="far fa-trash-alt"></i></a></td>
                     </tr>
                 <% }) %>
             </tbody>
@@ -89,7 +89,7 @@
 
       <div class="row">
         <div class="col-md-12" style="text-align: center;">
-          <a href="/products/create" class="btn btn-sm btn-success">Cadastrar <i class="fas fa-box-open"></i></a>
+          <a href="/student/create" class="btn btn-sm btn-success">Cadastrar <i class="fab fa-buffer"></i></a>
         </div>
       </div>
     </div>
@@ -99,15 +99,18 @@
       <div class="modal-dialog">
           <div class="modal-content">
               <div class="modal-header">
-                 <h3 class="modal-title" id="exampleModalLabel">Dados do Produto</h3>
+                 <h3 class="modal-title" id="exampleModalLabel">Dados dos Alunos</h3>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
-                <h5 class="name-profile"></h5> 
-                <strong>Modelo: </strong><span class="model"></span><br>
-                <strong>Marca: </strong><span class="brand"></span><br>
+                <h5 class="name-student"></h5> 
+                <strong>Nome: </strong><span class="name"></span><br>
+                <strong>RG: </strong><span class="rg"></span><br>
+                <strong>CPF: </strong><span class="cpf"></span><br>
+                <strong>Matrícula: </strong><span class="registration"></span><br>
+                <strong>Curso: </strong><span class="course"></span><br>
               </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-dark" data-dismiss="modal">Fechar</button>
@@ -115,7 +118,7 @@
           </div>
       </div>
     </div>
-    
+
     <!-- Modal Delete-->
     <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -126,8 +129,8 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body">
-                Você realmente deseja excluir o produto <strong><span class="product_name"></span> | <span class="product_model"></span></strong> ?
+              <div class="modal-body">  
+                Você realmente deseja excluir o aluno <strong><span class="class"></span></strong> ?
               </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-dark" data-dismiss="modal">Cancelar</button>
@@ -139,54 +142,52 @@
 
     <!-- Toast Aviso -->
     <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="5000" style="position: absolute; top: 0; right: 0; margin-top: 1%; margin-right: 1%">
-        <div class="toast-header">
-          <strong class="mr-auto">Aviso!</strong>
-          <small class="text-muted">Agora</small>
-          <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="toast-body" style="background-color: #f1f1f1;">
-          <p class="text-toast"></p>
-        </div>
+      <div class="toast-header">
+        <strong class="mr-auto">Aviso!</strong>
+        <small class="text-muted">Agora</small>
+        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
+      <div class="toast-body" style="background-color: #f1f1f1;">
+        <p class="text-toast"></p>
+      </div>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script> 
-
     <script>
-        function getTotalProducts() {
-            $.ajax({
-                method: 'GET',
-                url: '/products/total'
-            }).done(function(data) {
-                $(".total").text(data)
-            });
+        function getTotalClass() {
+          $.ajax({
+              method: 'GET',
+              url: '/student/total'
+          }).done(function(data) {
+              $(".total").text(data)
+          });
         }
 
         $(document).ready(function() {
-            getTotalProducts()
+            getTotalClass()
             let buttonRemove = null;
             let id = null;
             $(document).on('click', '.btn-delete', function() {
                 buttonRemove = $(this)
                 id = $(this).data('id')
                 $("#modalDelete").modal('toggle')
-                $(".product_name").text($(this).data('name'))
-                $(".product_model").text($(this).data('model'))
+                $(".class").text($(this).data('name'))
             })
 
             $(document).on('click', '.btnConfirmDeletion', function() {
                 $.ajax({
                     method: 'GET',
-                    url: '/products/destroy/'+id
+                    url: '/student/destroy/'+id
                 }).done(function(data) {
                     if(data == 'success') {
                         if(buttonRemove != null) {
                             buttonRemove.closest('tr').remove()
                             $("#modalDelete").modal('toggle')
                             $(".toast").toast('show');
-                            $(".text-toast").text('Produto removido com sucesso!')
-                            getTotalProducts();
+                            $(".text-toast").text('Aluno removido com sucesso!')
+                            getTotalClass();
                         }
                     }
                 })
@@ -196,10 +197,13 @@
 
     <script>
       $(document).ready(function() {
-        $(document).on('click', '.btn-description', function() {
+        $(document).on('click', '.btn-info', function() {
           $(".modalDescription").modal('toggle')
-          $(".model").text($(this).data('model'))
-          $(".brand").text($(this).data('brand'))
+          $(".name").text($(this).data('nome'))
+          $(".rg").text($(this).data('rg'))
+          $(".cpf").text($(this).data('cpf'))
+          $(".registration").text($(this).data('matricula'))
+          $(".course").text($(this).data('curso'))
         })
       })
     </script>
