@@ -197,7 +197,6 @@ app.route('/products/destroy/:id').get((req, res) => {
 // return view index and list all users from db
 app.route('/course').get((req, res) => { 
     db.collection('course').find().toArray((err, results) => {
-        console.log(results)
         if (err) return console.log(err)
         res.render('course/index.ejs', {data: results, title: 'CRUD - Aulas'})
     }) 
