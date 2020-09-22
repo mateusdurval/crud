@@ -1,0 +1,241 @@
+[33mcommit 9441a3ecafbfad8220a33ffca66f2a76ab759fcb[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: be08f34 47375b2
+Author: marcelolun <68491006+marcelolun@users.noreply.github.com>
+Date:   Mon Sep 21 19:40:22 2020 -0300
+
+    Merge pull request #1 from mateusdurval/feat/branchmarceloluna
+    
+    crud marcelo luna de jesus/alunos
+
+[33mcommit 47375b2335d7a31ac5996837105fc6fbd33329d3[m[33m ([m[1;31morigin/feat/branchmarceloluna[m[33m)[m
+Author: Marcelo Luna <marcelo_lun4@hotmail.com>
+Date:   Mon Sep 21 19:36:11 2020 -0300
+
+    crud marcelo luna de jesus/alunos
+
+[33mcommit be08f348e76bc73299d0f655dedf2992011800b4[m
+Author: Mateus Durval <mateus.durvalf@gmail.com>
+Date:   Mon Sep 21 11:17:36 2020 -0300
+
+    fix remove results when start server in console.log
+
+[33mcommit 9bb1aaa860a3872d18ed63f58bbe51d66d410ecf[m
+Author: Mateus Durval <mateus.durvalf@gmail.com>
+Date:   Mon Sep 21 11:16:10 2020 -0300
+
+    fix remove results when start server in console.log
+
+[33mcommit 15f991bbf57b15b12c4a4a5303babb1f5b506dde[m
+Author: matheusdiasdev <mmde1998@gmail.com>
+Date:   Sun Sep 20 16:14:29 2020 -0300
+
+    crud mateus dias
+
+[33mcommit 39d51f1d756f09f47dc5fa348fddf45afa8354df[m
+Author: Mateus Durval <mateus.durvalf@gmail.com>
+Date:   Sun Sep 20 11:40:14 2020 -0300
+
+    update navbar items
+
+[33mcommit 4b465bc9ac30088f9ec93369eca3348d7104d586[m
+Author: Mateus Durval <mateus.durvalf@gmail.com>
+Date:   Sun Sep 20 11:28:13 2020 -0300
+
+    fix update title
+
+[33mcommit 1ad2d50b0b42924ee006d69540d422a4c20ef93e[m
+Merge: 85ed86b 49d95ce
+Author: Mateus Durval <mateus.durvalf@gmail.com>
+Date:   Sat Sep 19 21:25:41 2020 -0300
+
+    Merge branch 'master' of https://github.com/mateusdurval/crud
+
+[33mcommit 85ed86bea0b61d96c897c674480569ee75a58ea8[m
+Author: Mateus Durval <mateus.durvalf@gmail.com>
+Date:   Sat Sep 19 21:24:52 2020 -0300
+
+    junção dos crud's da equipe
+
+[33mcommit 49d95ce2ce4d5514d327917f06947437d247cf71[m
+Author: Mateus Durval <mateus.durvalf@gmail.com>
+Date:   Thu Sep 10 09:46:51 2020 -0300
+
+    finally
+
+[33mcommit fe9ba84a6693fe31490c84e1d504374cfe60ceb4[m
+Merge: 3689076 16ee582
+Author: Mateus Durval <mateus.durvalf@gmail.com>
+Date:   Thu Sep 10 09:40:45 2020 -0300
+
+    nothing to commit]
+
+[33mcommit 3689076a59d3e9ea3a9d80295b80fae0db765abb[m
+Author: Mateus Durval <mateus.durvalf@gmail.com>
+Date:   Thu Sep 10 08:39:22 2020 -0300
+
+    update view
+
+[33mcommit 16ee58250417a218ac441e71c3af6a9899f647d0[m
+Author: Mateus Durval <mateus.durvalf@gmail.com>
+Date:   Wed Sep 9 21:17:17 2020 -0300
+
+    add button viacep
+
+[33mcommit e5b7a603aa150b3597680bc96798ac92782aa157[m
+Author: Mateus Durval <mateus.durvalf@gmail.com>
+Date:   Wed Sep 9 20:56:05 2020 -0300
+
+    update views
+
+[33mcommit cc99a07a745abe7d737d9a280bb20beb059a95e3[m
+Author: Mateus Durval <mateus.durvalf@gmail.com>
+Date:   Wed Sep 9 19:49:44 2020 -0300
+
+    add viacep to the views
+
+[33mcommit c105ff9328e7abe6fb1d73fc5f2f1a69681f5068[m
+Author: Mateus Durval <mateus.durvalf@gmail.com>
+Date:   Wed Sep 9 19:48:26 2020 -0300
+
+    add viacep to the views
+
+[33mcommit 44d77f6266ae1d49f97b89c2c99cece72f1bb69e[m
+Author: Mateus Durval <mateus.durvalf@gmail.com>
+Date:   Wed Sep 9 16:07:54 2020 -0300
+
+    add via-cep location
+
+[33mcommit ae087fd84f096e47a9821ff01fe93d3e1c7b599f[m
+Author: Mateus Durval <mateus.durvalf@gmail.com>
+Date:   Wed Sep 9 12:46:11 2020 -0300
+
+    modal user information
+
+[33mcommit 7f2b4030978800c5f1c9fa7ccb18803bbb617393[m
+Author: Mateus Durval <mateus.durvalf@gmail.com>
+Date:   Wed Sep 9 12:43:36 2020 -0300
+
+    modal user information
+
+[33mcommit 18ac36985e7f26715ea51207c744571aa53abda5[m
+Author: mateusdurval <60145681+mateusdurval@users.noreply.github.com>
+Date:   Tue Sep 8 19:45:32 2020 -0300
+
+    Delete index.ejs
+
+[33mcommit a5aaa3b525b942dfa1075720b9d7684aebe74442[m
+Author: mateusdurval <60145681+mateusdurval@users.noreply.github.com>
+Date:   Tue Sep 8 19:45:19 2020 -0300
+
+    Delete edit.ejs
+
+[33mcommit 544b22eda2c082e73295190cca1b0ab6c72b35ae[m
+Author: mateusdurval <60145681+mateusdurval@users.noreply.github.com>
+Date:   Tue Sep 8 19:45:08 2020 -0300
+
+    Delete create.ejs
+
+[33mcommit 949cdc29dc3069e41c91f852cef2895e92d74a16[m
+Author: mateusdurval <60145681+mateusdurval@users.noreply.github.com>
+Date:   Tue Sep 8 19:44:52 2020 -0300
+
+    Delete edit.ejs
+
+[33mcommit 9ae7d78acf29726738f7d73fc00fcf4573f81b8c[m
+Author: mateusdurval <60145681+mateusdurval@users.noreply.github.com>
+Date:   Tue Sep 8 19:44:41 2020 -0300
+
+    Delete create.ejs
+
+[33mcommit e7abb2a71b8ee400e9969a24c04bd69b7f7dd28a[m
+Author: mateusdurval <60145681+mateusdurval@users.noreply.github.com>
+Date:   Tue Sep 8 19:44:23 2020 -0300
+
+    Delete index.ejs
+
+[33mcommit d064bd1c3fc2e860142ed5a7ef8d73530741ef9b[m
+Author: mateusdurval <60145681+mateusdurval@users.noreply.github.com>
+Date:   Tue Sep 8 19:43:07 2020 -0300
+
+    Update index.ejs
+    
+    Remove navbar menu
+
+[33mcommit e23ed2737d978c83ba6c706e3266d3328917b6ff[m
+Author: Mateus Durval <mateus.durvalf@gmail.com>
+Date:   Tue Sep 8 07:22:50 2020 -0300
+
+    Adicionando Font Awesome nas views
+
+[33mcommit e003817e91b37578c70ed3463a9b346d099e40a5[m
+Author: Mateus Durval <mateus.durvalf@gmail.com>
+Date:   Sat Sep 5 15:27:38 2020 -0300
+
+    Final
+
+[33mcommit f8b2985f2ceb80109af18d053660efca7e910140[m
+Author: Mateus Durval <mateus.durvalf@gmail.com>
+Date:   Sat Sep 5 13:13:35 2020 -0300
+
+    jquery mask plugin
+
+[33mcommit afefac005b17909ed3d6387f0dd12f91c2403f2e[m
+Author: Mateus Durval <mateus.durvalf@gmail.com>
+Date:   Sat Sep 5 12:40:30 2020 -0300
+
+    nothing for edit
+
+[33mcommit 42b4dc37c41f2406ca75809eb69e83fc18952cdf[m
+Author: Mateus Durval <mateus.durvalf@gmail.com>
+Date:   Sat Sep 5 12:37:39 2020 -0300
+
+    get total users from db
+
+[33mcommit beb0cfb36f268f22d659f9ff1b34bb178bad1797[m
+Author: Mateus Durval <mateus.durvalf@gmail.com>
+Date:   Sat Sep 5 11:44:28 2020 -0300
+
+    Delete user using request ajax
+
+[33mcommit 683bec6d2274e1409111b911d2be51a22e93928a[m
+Author: Mateus Durval <mateus.durvalf@gmail.com>
+Date:   Sat Sep 5 10:17:12 2020 -0300
+
+    delete user by ID
+
+[33mcommit 4a093d8c9de5361351361148e6c1691516d8b952[m
+Merge: 47c604c 6b7caa5
+Author: Mateus Durval <mateus.durvalf@gmail.com>
+Date:   Fri Sep 4 18:39:53 2020 -0300
+
+    'funcionando'
+
+[33mcommit 47c604c0956d2a0f2bd5c632671ee354bfec3012[m
+Author: Mateus Durval <mateus.durvalf@gmail.com>
+Date:   Fri Sep 4 18:38:01 2020 -0300
+
+    'teste'
+
+[33mcommit 6b7caa56a84e7eb20401d7f7efaea28a18e49d5d[m
+Author: Mateus Durval <mateus.durvalf@gmail.com>
+Date:   Fri Sep 4 16:47:00 2020 -0300
+
+    fix view update
+
+[33mcommit 5fc43c141796fb2d0d1abf546596e220de1feace[m
+Author: Mateus Durval <mateus.durvalf@gmail.com>
+Date:   Thu Sep 3 16:34:52 2020 -0300
+
+    API routes and views create and edit
+
+[33mcommit 14ddbcb4c37d68807b0eb5aeed0ef0eca8f0cb35[m
+Author: Mateus Durval <mateus.durvalf@gmail.com>
+Date:   Thu Sep 3 11:16:44 2020 -0300
+
+    Criando botão de cadastro
+
+[33mcommit 8661640ef08cd1ac5aef90d56cc92a2ad44ba2ec[m
+Author: Mateus Durval <mateus.durvalf@gmail.com>
+Date:   Wed Sep 2 16:26:34 2020 -0300
+
+    Primeiro commit

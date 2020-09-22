@@ -355,7 +355,6 @@ app.route('/medicine/destroy/:id').get((req, res) => {
 
 app.route('/student').get((req, res) => { 
     db.collection('student').find().toArray((err, results) => {
-        console.log(results)
         if (err) return console.log(err)
         res.render('student/index.ejs', {data: results, title: 'CRUD - Student'})
     }) 
