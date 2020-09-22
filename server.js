@@ -416,7 +416,7 @@ app.route('/student/update').post((req, res) => {
         res.redirect('/student')
     })
 })
-
+//delete user by id
 app.route('/student/destroy/:id').get((req, res) => {
     console.log('ID:', req.params.id)
     var id = req.params.id
@@ -429,5 +429,81 @@ app.route('/student/destroy/:id').get((req, res) => {
     })
 })
 
+//___________________________________ TABLE GAMES ________________________________________
 
+//lists all users
+app.get('/jogos', (req, res) => {
+    db.collection('jogos').find().toArray((err, results) => {
+        if (err) return console.log(err)
+        res.render('jogos/index.ejs', {data: results, title: 'CRUD - Jogos'})
+    })    
+})
+//** get total consults from db (for ajax request's) */
+app.get('/jogos/total', (req, res) => {
+    db.collection('jogos').find().count((err, result) => {
+        res.status(200).send((result).toString())
+    })
+})
+//** return view form for to create */
+app.route('/jogos/create').get((req, res) => { 
+    res.render('jogos/create.ejs', {title: 'Cadastrar Jogo'})
+})
+//insert game on db
+app.route('/jogos/insert').post((req, res) => { 
+    db.collection('jogos').save(req.body, (err, result) => {
+        if (err) return console.log(err)
 
+        console.log ('Inserted in the database!')
+        res.redirect('/jogos')
+    })
+    console.log(req.body)
+})
+//return form view for editing
+app.route('/jogos/edit/:id').get((req, res) => { 
+    var id = req.params.id
+    console.log(id)
+    db.collection('jogos').find({"_id": ObjectId(id)}).toArray((err, result) => {
+        if (err) return console.log(err) 
+
+        console.log(result)
+
+        res.render('jogos/edit.ejs', {jogos: result, title: 'Editar jogo'})
+    })
+})
+//action update on db
+app.route('/jogos/update').post((req, res) => {
+    console.log('ID:', req.body.id)
+
+    var id = req.body.id
+    var name = req.body.name
+    var desenvolvedor = req.body.desenvolvedor
+    var anolancamento = req.body.anolancamento
+    var plataforma = req.body.plataforma
+    var preco = req.body.preco
+
+    db.collection('jogos').updateOne({_id: ObjectId (id)}, {
+        $set: {
+            name: name,
+            desenvolvedor: desenvolvedor,
+            anolancamento: anolancamento,
+            plataforma: plataforma,
+            preco: preco
+        }
+    }, (err, result) => {
+        if (err) return res.send(err)
+        console.log('Atualizado com sucesso!')
+        res.redirect('/jogos')
+    })
+})
+//delete user by id (request ajax)
+app.route('/jogos/destroy/:id').get((req, res) => {
+    console.log('ID:', req.params.id)
+    var id = req.params.id
+
+    db.collection('jogos').deleteOne({_id: ObjectId(id)}, (err, result) => {
+        if (err) return res.send(500, err)
+
+        console.log('Deleted user!')
+        res.send('success')
+    })
+})

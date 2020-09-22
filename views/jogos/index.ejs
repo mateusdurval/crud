@@ -28,7 +28,7 @@
     <div class="container">
       <ul class="nav nav-tabs justify-content-center">
         <li class="nav-item">
-          <a class="nav-link active" href="/">Cadastro de Usuários</a>
+          <a class="nav-link" href="/">Cadastro de Usuários</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/products">Cadastro de Produtos</a>
@@ -43,7 +43,7 @@
           <a class="nav-link" href="/student">Cadastro de Alunos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/jogos">Cadastro de Jogos</a>
+            <a class="nav-link active" href="/jogos">Cadastro de Jogos</a>
         </li>
       </ul>
     </div>
@@ -51,7 +51,7 @@
     <div class="container"> 
       <div class="row">
         <div class="col-md-12" style="margin-top: 2%">
-          <h3 style="text-align: center">Usuários cadastrados - <span class="total"></span></h3>
+          <h3 style="text-align: center">Jogos cadastrados - <span class="total"></span></h3>
         </div>
       </div>
     </div>
@@ -59,30 +59,28 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12" style="margin-top: 2%">
-          <table class="table table-striped table-hover table-responsive">
+          <table class="table table-striped table-hover">
             <thead>
               <tr>
                 <th>Nome:</th>
-                <th>Nascimento:</th>
-                <th>Telefone:</th>
-                <th>RG:</th>
-                <th>CPF:</th>
-                <th>Endereço:</th>
+                <th>Desenvolvedor:</th>
+                <th>Ano de Lançamento:</th>
+                <th>Plataformas:</th>
+                <th>Preço:</th>
                 <th></th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
-              <% data.forEach(function(user) { %>
+              <% data.forEach(function(jogos) { %>
               <tr>
-                <td><a href="javascript:void(0)" class="btn btn-sm btn-dark btn-profile" data-name="<%= user.name %>" data-cpf="<%= user.cpf %>" data-rg="<%= user.rg %>" data-phone="<%= user.phone %>" data-address="<%= user.address %>" data-age="<%= user.age %>" data-street="<%= user.street %>" data-city="<%= user.city %>" data-state="<%= user.state %>" data-cep="<%= user.cep %>" data-bairro="<%= user.bairro %>" data-district="<%= user.district %>" data-number="<%= user.number %>"><i class="far fa-user"></i> <%= user.name %></a></td>
-                <td><%= user.age %></td>
-                <td><%= user.phone %></td>
-                <td><%= user.rg %></td>
-                <td><%= user.cpf %></td>
-                <td><%= user.district %>, <%= user.city %> - <%= user.state %></td>
-                <th><a href="/users/edit/<%= user._id %>"><i class="far fa-edit" style="color: darkcyan"></i></a></th>
-                <th><a href="javascript:void(0)" class="btnDelete btn-delete" data-id="<%= user._id %>" data-name="<%= user.name %>"><i class="far fa-trash-alt"></i></a></th>
+                <td><a href="javascript:void(0)" class="btn btn-sm btn-dark btn-profile" data-preco="<%= jogos.preco %>" data-plataforma="<%= jogos.plataforma %>" data-anolancamento="<%= jogos.anolancamento %>" data-desenvolvedor="<%= jogos.desenvolvedor %>" data-nome_jogo="<%= jogos.name %>"><i class="fas fa-puzzle-piece"></i> <%= jogos.name %></a></td>
+                <td><%= jogos.desenvolvedor %></td>
+                <td><%= jogos.anolancamento %></td>
+                <td><%= jogos.plataforma %></td>
+                <td><%= jogos.preco %></td>
+                <th><a href="/jogos/edit/<%= jogos._id %>"><i class="far fa-edit" style="color: darkcyan"></i></a></th>
+                <th><a href="javascript:void(0)" class="btn-delete" data-id="<%= jogos._id %>" data-name="<%= jogos.name %>"><i class="far fa-trash-alt"></i></a></th>
               </tr>
               <% }) %>
               <tr>
@@ -93,7 +91,7 @@
 
       <div class="row">
         <div class="col-md-12" style="text-align: center;">
-          <a href="/users/create" class="btn btn-sm btn-success">Cadastrar <i class="fas fa-user-friends"></i></a>
+          <a href="/jogos/create" class="btn btn-sm btn-success">Cadastrar <i class="fas fa-puzzle-piece"></i></a>
         </div>
       </div>
     </div>
@@ -109,7 +107,7 @@
                 </button>
               </div>
               <div class="modal-body">
-                Você realmente deseja excluir o usuário: <strong><span class="nameUser"></span></strong>?
+                Você realmente deseja excluir o jogo <strong><span class="nameJogo"></span></strong>?
               </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-dark" data-dismiss="modal">Cancelar</button>
@@ -119,31 +117,23 @@
       </div>
     </div>
 
-    <!-- Modal Profile-->
-    <div class="modal fade modal-profile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Modal Jogos -->
+    <div class="modal fade modal-jogo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
           <div class="modal-content">
               <div class="modal-header">
-                 <h3 class="modal-title" id="exampleModalLabel">Dados do usuário</h3>
+                 <h3 class="modal-title" id="exampleModalLabel">Dados do jogo</h3>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
-                <h5 class="name-profile"></h5> 
-                <strong>CPF: </strong> <span class="cpf"></span><br>
-                <strong>RG: </strong> <span class="rg"></span><br>
-                <strong>Telefone: </strong> <span class="phone"></span><br>
-                <strong>Nascimento: </strong> <span class="age"></span>
-                <hr>
-                <h5>Endereço</h5>
-                <strong>CEP: </strong> <span class="cep"></span><br>
-                <strong>Cidade: </strong> <span class="city"></span><br>
-                <strong>Estado: </strong> <span class="state"></span><br>
-                <strong>Bairro: </strong> <span class="district"></span><br>
-                <strong>Rua: </strong> <span class="street"></span><br>
-                <strong>Número: </strong> <span class="number"></span>
-              </div>
+                <h5 class="name-jogo"></h5> 
+                <strong>Nome: </strong><span class="nome_jogo"></span><br>
+                <strong>Desenvoledor: </strong> <span class="desenvolvedor"></span><br>
+                <strong>Lançamento: </strong> <span class="anolancamento"></span><br>
+                <strong>Plataforma: </strong> <span class="plataforma"></span><br>
+                <strong>Preço: </strong> <span class="preco"></span><br><br>
               <div class="modal-footer">
                   <button type="button" class="btn btn-dark" data-dismiss="modal">Fechar</button>
               </div>
@@ -168,30 +158,30 @@
     <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script> 
     <script>
       //get total users from DB
-      function getTotalUsers() {
+      function getTotalJogos() {
         $.ajax({
           method: 'GET',
-          url: '/users/total'
+          url: '/jogos/total'
         }).done(function(data) {
           $(".total").text(data)
         });
       }
       //script to delete user
       $(document).ready(function() {
-        getTotalUsers();
+        getTotalJogos();
         let id = null;
         let btn = null;
-        $(document).on('click', '.btnDelete', function() {
+        $(document).on('click', '.btn-delete', function() {
           id = $(this).data('id');
           btn = $(this);
-          $(".nameUser").text($(this).data('name'));
+          $(".nameJogo").text($(this).data('name'));
           $("#modalDelete").modal('toggle');
         });
 
         $(document).on('click', '.btnConfirmDeletion', function() {
           $.ajax({
             method: 'GET',
-            url: '/users/delete/'+id
+            url: '/jogos/destroy/'+id
           }).done(function(data) {
             console.log(data)
             if(data == 'success') {
@@ -199,11 +189,11 @@
                   btn.closest('tr').remove();
                   $("#modalDelete").modal('toggle');
                   $(".toast").toast('show');
-                  $(".text-toast").text('Usuário excluído com sucesso!')
-                  getTotalUsers();
+                  $(".text-toast").text('Jogo excluído com sucesso!')
+                  getTotalJogos();
                 }
             } else {
-              alert('Falha ao excluir usuário, ele já pode ter sido excluído!');
+              alert('Falha ao excluir jogo, ele já pode ter sido excluído!');
             }
           });
         });
@@ -214,19 +204,12 @@
     <script>
       $(document).ready(function() {
         $(document).on('click', '.btn-profile', function() {
-          $(".modal-profile").modal('toggle')
-          $(".name-profile").text($(this).data('name'))
-          $(".cpf").text($(this).data('cpf'))
-          $(".rg").text($(this).data('rg'))
-          $(".age").text($(this).data('age'))
-          $(".phone").text($(this).data('phone'))
-
-          $(".cep").text($(this).data('cep'))
-          $(".district").text($(this).data('district'))
-          $(".street").text($(this).data('street'))
-          $(".city").text($(this).data('city'))
-          $(".state").text($(this).data('state'))
-          $(".number").text($(this).data('number'))
+          $(".modal-jogo").modal('toggle')
+          $(".nome_jogo").text($(this).data('nome_jogo'))
+          $(".desenvolvedor").text($(this).data('desenvolvedor'))
+          $(".anolancamento").text($(this).data('anolancamento'))
+          $(".plataforma").text($(this).data('plataforma'))
+          $(".preco").text($(this).data('preco'))
         });
       });
     </script>
